@@ -159,23 +159,20 @@ $ spin build
 <build output omitted>
 
 $ spin deploy
-Successfully deployed application!
+Successfully deployed application myapp version 0.1.0!
+Application is running at spin-deploy.myapp.hippo.18.214.181.226.sslip.io
 ```
 
-You can then hit your app's served route (`/hello`) via its URL.
+You can then hit your app's served route (`/hello`) via the URL supplied above.
 
-The default structure for an app's URL on Hippo is `http(s)://<channel name>.<app name>.hippo.<domain>`.
-When deploying with `spin deploy`, the app name is used for the hippo channel name as well.
+```console
+$ curl http://spin-deploy.myapp.hippo.${DNS_DOMAIN}/hello
+Hello, Fermyon
+```
 
 You can also find the app URL by navigating to the Hippo dashboard (`$HIPPO_URL`), loggging in
 with the `$HIPPO_USERNAME` and `$HIPPO_PASSWORD` values and then clicking on the app page.
 
-Here's what the URL looks like based on the example above:
-
-```console
-$ curl http://myapp.myapp.hippo.${DNS_DOMAIN}/hello
-Hello, Fermyon
-```
 
 ## Cleaning up
 
