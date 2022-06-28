@@ -74,12 +74,24 @@ case "$(uname -m)" in
     ;;
 esac
 
+bindle_auth_username="admin"
+bindle_auth_password="$(cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 33)"
+bindle_basic_auth_string="$(htpasswd -bBn ${bindle_auth_username} ${bindle_auth_password}  | tr -d '\n')"
+
 case "${OSTYPE}" in
   darwin*)
-    nomad run -var="os=macos" -var="arch=${arch}" job/bindle.nomad
+    nomad run \
+      -var="os=macos" \
+      -var="arch=${arch}" \
+      -var basic_auth_string="${bindle_basic_auth_string}" \
+      job/bindle.nomad
     ;;
   linux*)
-    nomad run -var="os=linux" -var="arch=${arch}" job/bindle.nomad
+    nomad run \
+      -var="os=linux" \
+      -var="arch=${arch}" \
+      -var basic_auth_string="${bindle_basic_auth_string}" \
+      job/bindle.nomad
     ;;
   *)
     echo "Bindle is only started on MacOS and Linux"
@@ -90,10 +102,18 @@ echo "Starting hippo job..."
 
 case "${OSTYPE}" in
   darwin*)
-    nomad run -var="os=osx" job/hippo.nomad
+    nomad run \
+      -var="os=osx" \
+      -var="bindle_auth_username=${bindle_auth_username}" \
+      -var="bindle_auth_password=${bindle_auth_password}" \
+      job/hippo.nomad
     ;;
   linux*)
-    nomad run -var="os=linux" job/hippo.nomad
+    nomad run \
+      -var="os=linux" \
+      -var="bindle_auth_username=${bindle_auth_username}" \
+      -var="bindle_auth_password=${bindle_auth_password}" \
+      job/hippo.nomad
     ;;
   *)
     echo "Hippo is only started on MacOS and Linux"
@@ -123,6 +143,8 @@ echo
 echo "    export CONSUL_HTTP_ADDR=http://localhost:8500"
 echo "    export NOMAD_ADDR=http://localhost:4646"
 echo "    export BINDLE_URL=http://bindle.local.fermyon.link/v1"
+echo "    export BINDLE_USERNAME=${bindle_auth_username}"
+echo "    export BINDLE_PASSWORD='${bindle_auth_password}'"
 echo "    export HIPPO_URL=http://hippo.local.fermyon.link"
 echo
 echo "Ctrl+C to exit."

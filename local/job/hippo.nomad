@@ -26,6 +26,16 @@ variable "os" {
   }
 }
 
+variable "bindle_auth_username" {
+  type        = string
+  description = "Basic auth username for Bindle"
+}
+
+variable "bindle_auth_password" {
+  type        = string
+  description = "Basic auth password for Bindle"
+}
+
 job "hippo" {
   datacenters = ["dc1"]
   type        = "service"
@@ -80,6 +90,8 @@ job "hippo" {
       }
 
       env {
+        Logging__LogLevel__Default = "Debug"
+
         Hippo__PlatformDomain = var.domain
         Scheduler__Driver     = "nomad"
         Nomad__Driver         = "raw_exec"
@@ -87,7 +99,7 @@ job "hippo" {
         Database__Driver            = "sqlite"
         ConnectionStrings__Database = "Data Source=hippo.db;Cache=Shared"
 
-        Bindle__Url = var.bindle_url
+        ConnectionStrings__Bindle    = "server=${var.bindle_url};username=${var.bindle_auth_username};password=${var.bindle_auth_password}"
 
         Jwt__Key      = "ceci n'est pas une jeton"
         Jwt__Issuer   = "localhost"
