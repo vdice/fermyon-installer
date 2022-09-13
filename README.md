@@ -23,13 +23,13 @@ Spin-based applications.
 ## Local
 ---
 
-Looking to install Fermyon on your local machine? Follow the
-[local](./local/README.md) guide to get started.
+Looking to install Fermyon on your local machine? You have a few options:
 
-Once the
-[prerequisites](./local/README.md#prerequisites) have been installed, this
-is the quickest and easiest method to launch Fermyon and begin deploying
-apps.
+1. To run the platform in a VM, follow the [vm](./vm/README.md) guide to get
+  started.
+
+1. To run the platform directly on your machine after installing all of the
+  required components, follow the [local](./local/README.md) guide.
 
 ## AWS
 ---
