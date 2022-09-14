@@ -44,13 +44,10 @@ variables (such as `HIPPO_URL` and `BINDLE_URL`) into your shell via:
 $(fermyonvm env)
 ```
 
-Next, navigate your browser to Hippo (e.g. `open $HIPPO_URL`) and register a
-new account. The username and password values will be needed when deploying
-your Spin application, so export these into your terminal as well:
+To log in to the Hippo dashboard, navigate your browser to Hippo (e.g. `open $HIPPO_URL`). The pre-configured username is admin and the password can be found in the `HIPPO_PASSWORD` environment variable in your shell session.
 
 ```console
-export HIPPO_USERNAME=<username>
-export HIPPO_PASSWORD=<password>
+echo $HIPPO_PASSWORD
 ```
 
 Now you are ready to deploy your first application on Fermyon. Follow the
