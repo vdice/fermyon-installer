@@ -19,9 +19,9 @@ bindle:
   checksum: "2b1d5c8fbd10684147e3546de1c2dcd438e691441ea68ca32c23a4d1c1d81048"
 
 spin:
-  version: "v0.6.0"
-  checksum: "fd613b75f0fdc1708d77ca18512b923d24603d4af103a74038815441ddd11573"
+  version: "v0.10.1"
+  checksum: "105054335fd76b3d2a1b76a705dbdb3b83d7e4093b302a7816ce7f922893f29d"
 
 hippo:
-  version: "v0.19.1"
-  checksum: "46f53d44a8995453cee51ad5e9c129d30de279b9a4f8d12980b4aa805ec23054"
+  version: "v0.20.2"
+  checksum: "6b7bd79a5530533a0c75eafabfc204c1c6335c8891d78ef96e4b88bf1bf2966e"

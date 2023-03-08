@@ -4,7 +4,7 @@
 
 To build and run the website:
 
-1. Install and configure [Spin](https://spin.fermyon.dev).
+1. Install and configure [Spin](https://developer.fermyon.com/spin).
 
 2. Run the following `npm` commands:
 

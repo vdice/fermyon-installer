@@ -20,7 +20,7 @@ The Fermyon dashboard, a web app, makes it easy to configure your app, choose a 
 
 >> Fermyon offers all of the perks of a deployment platform, including a web UI. But if you are just doing local development, you can use `spin up` and `spin build --up` to run your app locally.
 
-The [Spin quickstart](https://spin.fermyon.dev) will get you going with Spin. Read on if you want to install Fermyon on a server or in the cloud.
+The [Spin quickstart](https://developer.fermyon.com/spin) will get you going with Spin. Read on if you want to install Fermyon on a server or in the cloud.
 
 ### For DevOps
 

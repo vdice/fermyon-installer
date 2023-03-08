@@ -9,7 +9,7 @@ jobs:
   docs:
     runs-on: "ubuntu-latest"
     env:
-      SPIN_VERSION: v0.6.0
+      SPIN_VERSION: v0.10.1
     steps:
       - uses: actions/checkout@v2
 

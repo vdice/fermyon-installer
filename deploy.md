@@ -8,39 +8,51 @@ your first app.
 ## Prerequisites
 
 For building and deploying Spin apps on Fermyon, you'll need the
-[Spin CLI](https://spin.fermyon.dev/quickstart). The following example uses
-Spin [v0.6.0](https://github.com/fermyon/spin/releases/tag/v0.6.0).
+[Spin CLI](https://developer.fermyon.com/spin/quickstart). The following example uses
+Spin [v0.10.1](https://github.com/fermyon/spin/releases/tag/v0.10.1).
 
 ## Example flow
 
 First, install the example application templates via Spin:
 
 ```console
-$ spin templates install --git https://github.com/fermyon/spin
+$ spin templates install --git https://github.com/fermyon/spin --update
 Copying remote template source
 Installing template redis-rust...
+Installing template static-fileserver...
 Installing template http-grain...
 Installing template http-swift...
+Installing template http-php...
 Installing template http-c...
+Installing template redirect...
 Installing template http-rust...
 Installing template http-go...
 Installing template http-zig...
+Installing template http-empty...
 Installing template redis-go...
-Installed 8 template(s)
+Installed 12 template(s)
 
-+-----------------------------------------------------------------+
-| Name         Description                                        |
-+=================================================================+
-| http-c       HTTP request handler using C and the Zig toolchain |
-| http-go      HTTP request handler using (Tiny)Go                |
-| http-grain   HTTP request handler using Grain                   |
-| http-rust    HTTP request handler using Rust                    |
-| http-swift   HTTP request handler using SwiftWasm               |
-| http-zig     HTTP request handler using Zig                     |
-| redis-go     Redis message handler using (Tiny)Go               |
-| redis-rust   Redis message handler using Rust                   |
-+-----------------------------------------------------------------+
++------------------------------------------------------------------------+
+| Name                Description                                        |
++========================================================================+
+| http-c              HTTP request handler using C and the Zig toolchain |
+| http-empty          HTTP application with no components                |
+| http-go             HTTP request handler using (Tiny)Go                |
+| http-grain          HTTP request handler using Grain                   |
+| http-php            HTTP request handler using PHP                     |
+| http-rust           HTTP request handler using Rust                    |
+| http-swift          HTTP request handler using SwiftWasm               |
+| http-zig            HTTP request handler using Zig                     |
+| redirect            Redirects a HTTP route                             |
+| redis-go            Redis message handler using (Tiny)Go               |
+| redis-rust          Redis message handler using Rust                   |
+| static-fileserver   Serves static files from an asset directory        |
++------------------------------------------------------------------------+
 ```
+
+> See Spin's
+[Quickstart guide](https://developer.fermyon.com/spin/quickstart#install-a-template)
+for other available template sources.
 
 Here we'll choose the `http-rust` example and create a new app:
 
@@ -92,24 +104,19 @@ Finally, you are ready to deploy:
 
 ```console
 $ spin deploy
-Uploading myapp version 0.1.0+q4a61da1...
-Deployed myapp version 0.1.0+q4a61da1
-Waiting for application to become ready................ ready
+Uploading myapp version 0.1.0+qdbcc2e0...
+Deployed myapp version 0.1.0+qdbcc2e0
+Waiting for application to become ready.... ready
 Available Routes:
-  myapp: http://spin-deploy.myapp.local.fermyon.link/hello
+  myapp: http://myapp.local.fermyon.link/hello
 ```
 
 You can then hit your app's served route (`/hello`) via its URL.
 
 ```console
-$ curl http://spin-deploy.myapp.local.fermyon.link/hello
+$ curl http://myapp.local.fermyon.link/hello
 Hello, Fermyon
 ```
-
-_Note: in some scenarios, the app may not be immediately reachable. For
-instance, app routing (via Traefik) may still be pending, or the app itself may
-require a few seconds to launch and pass health checks. During this time, you
-may encounter `502 Bad Gateway` or `404 Not Found` response codes on requests._
 
 You can also find the app URL by navigating to the Hippo dashboard (`$HIPPO_URL`), loggging in
 with the `$HIPPO_USERNAME` and `$HIPPO_PASSWORD` values and then clicking on the app page.
@@ -130,13 +137,13 @@ $ spin build
 <build output omitted>
 
 $ spin deploy
-Uploading myapp version 0.1.0+q51c63ed...
-Deployed myapp version 0.1.0+q51c63ed
-Waiting for application to become ready.......... ready
+Uploading myapp version 0.1.0+q5202279...
+Deployed myapp version 0.1.0+q5202279
+Waiting for application to become ready.... ready
 Available Routes:
-  myapp: http://spin-deploy.myapp.local.fermyon.link/hello
+  myapp: http://myapp.local.fermyon.link/hello
 
-$ curl http://spin-deploy.myapp.local.fermyon.link/hello
+$ curl http://myapp.local.fermyon.link/hello
 Hello, Fermyon!
 ```
 
@@ -147,5 +154,5 @@ application on Fermyon.
 
 We hope this experience inspires you to explore further. For in-depth guides
 and further information, see the
-[Spin documentation](https://spin.fermyon.dev/) or
+[Spin documentation](https://developer.fermyon.com/spin) or
 [Hippo documentation](https://docs.hippofactory.dev/).

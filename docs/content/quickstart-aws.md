@@ -100,7 +100,7 @@ https://hippo.3.226.70.241.sslip.io
 ![The new application](static/image/docs/hippo-app-aws.png)
 
 > For a detailed guide on writing applications for the Fermyon platform, visit
-> the [Spin website](https://spin.fermyon.dev).
+> the [Spin website](https://developer.fermyon.com/spin).
 
 You can now make changes to the application and run `spin deploy` again, or
 create new applications.

@@ -1,6 +1,6 @@
 # Fermyon Installer
 
-Fermyon is a platform to host [Spin](https://spin.fermyon.dev) applications
+Fermyon is a platform to host [Spin](https://developer.fermyon.com/spin) applications
 and other compatible WebAssembly workloads.
 
 The resources in this repository are intended to provide users with different

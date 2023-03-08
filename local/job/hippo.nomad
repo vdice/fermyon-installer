@@ -12,7 +12,7 @@ variable "bindle_url" {
 
 variable "hippo_version" {
   type        = string
-  default     = "v0.19.1"
+  default     = "v0.20.2"
   description = "Hippo version"
 }
 
@@ -114,8 +114,7 @@ job "hippo" {
 
         Database__Driver            = "sqlite"
         ConnectionStrings__Database = "Data Source=hippo.db;Cache=Shared"
-
-        Bindle__Url = var.bindle_url
+        ConnectionStrings__Bindle   = "server=${var.bindle_url}"
 
         Jwt__Key      = "ceci n'est pas une jeton"
         Jwt__Issuer   = "localhost"
