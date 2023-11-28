@@ -1,20 +1,28 @@
+spin_manifest_version = 2
+
+[application]
 name = "fermyon-dev"
-spin_version = "1"
 version = "0.1.0"
 description = "The Fermyon Platform website."
-authors = [ "Fermyon Engineering <engineering@fermyon.com>" ]
-trigger = { type = "http", base = "/" }
+authors = ["Fermyon Engineering <engineering@fermyon.com>"]
 
-[[component]]
-source = "modules/bartholomew.wasm"
-id = "bartholomew"
-files = [ "content/**/*" , "templates/*", "scripts/*", "config/*"]
-[component.trigger]
+[application.trigger.http]
+base = "/"
+
+[[trigger.http]]
+id = "trigger-bartholomew"
+component = "bartholomew"
 route = "/..."
 
-[[component]]
-source = "modules/spin_static_fs.wasm"
-id = "fileserver"
-files = [ { source = "static/", destination = "/" } ]
-[component.trigger]
+[[trigger.http]]
+id = "trigger-fileserver"
+component = "fileserver"
 route = "/static/..."
+
+[component.bartholomew]
+source = "modules/bartholomew.wasm"
+files = ["content/**/*", "templates/*", "scripts/*", "config/*"]
+
+[component.fileserver]
+source = "modules/spin_static_fs.wasm"
+files = [{ source = "static/", destination = "/" }]
