@@ -1,15 +1,13 @@
 # Deploying to Fermyon
 
 Once Fermyon is up and running via your
-[installer of choice](./README.md#installers) and you've prepared your
-environment with relevant values for Hippo and Bindle, you're ready to deploy
+[installer of choice](./README.md#installers) you're ready to deploy
 your first app.
 
 ## Prerequisites
 
-For building and deploying Spin apps on Fermyon, you'll need the
-[Spin CLI](https://spin.fermyon.dev/quickstart). The following example uses
-Spin [v0.6.0](https://github.com/fermyon/spin/releases/tag/v0.6.0).
+For building and deploying Spin apps on Fermyon, you'll need v2+ of the
+[Spin CLI](https://developer.fermyon.com/spin/quickstart).
 
 ## Example flow
 

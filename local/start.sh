@@ -84,82 +84,16 @@ done
 echo "Starting traefik job..."
 nomad run job/traefik.nomad
 
-echo "Starting bindle job..."
-
-case "$(uname -m)" in
-  amd64 | x86_64)
-    export NOMAD_VAR_arch=amd64
-    ;;
-  aarch64 | arm64)
-    export NOMAD_VAR_arch=aarch64
-    ;;
-  *)
-    echo "$(uname -m) architecture not supported."
-    ;;
-esac
-
-case "${OSTYPE}" in
-  linux*)
-    export NOMAD_VAR_os=linux
-    nomad run job/bindle.nomad
-    ;;
-  darwin*)
-    export NOMAD_VAR_os=macos
-    nomad run job/bindle.nomad
-    ;;
-  *)
-    echo "Bindle is only started on MacOS and Linux"
-    ;;
-esac
-
-echo "Starting hippo job..."
-
-# Hippo uses different terms to describe architecture than bindle does, so we
-# need to re-export our `arch` variable
-case "$(uname -m)" in
-  amd64 | x86_64)
-    export NOMAD_VAR_arch=x64
-    ;;
-  aarch64 | arm64)
-    export NOMAD_VAR_arch=arm64
-    ;;
-  *)
-    echo "$(uname -m) architecture not supported."
-    ;;
-esac
-
-case "${OSTYPE}" in
-  linux*)
-    # Our os declaration will have been set above for bindle and doesn't
-    # change for hippo
-    nomad run job/hippo.nomad
-    ;;
-  darwin*)
-    # Hippo and bindle use different terms for mac support though, so we 
-    # re-export that value here.
-    export NOMAD_VAR_os=osx NOMAD_VAR_arch=x64
-    nomad run job/hippo.nomad
-    ;;
-  *)
-    echo "Hippo is only started on MacOS and Linux"
-    ;;
-esac
-
-# Required until hippo's healthz endpoint returns 404 when not ready.
-# Ref: https://github.com/fermyon/installer/pull/50
-echo 'Waiting for application to be accessible'
-HIPPO_URL="http://hippo.local.fermyon.link"
-while ! curl -s "${HIPPO_URL}/healthz"| grep -q "Healthy";  do
-  sleep 1
-done
+echo "Starting registry job..."
+nomad run job/registry.nomad
 
 echo
 echo "Dashboards"
 echo "----------"
-echo "Consul:  http://localhost:8500"
-echo "Nomad:   http://localhost:4646"
-echo "Traefik: http://localhost:8081"
-echo "Hippo:   http://hippo.local.fermyon.link"
+echo "Consul:   http://localhost:8500"
+echo "Nomad:    http://localhost:4646"
+echo "Traefik:  http://localhost:8081"
+echo "Registry: http://registry.local.fermyon.link"
 echo
 echo "Logs are stored in ./log"
 echo
@@ -167,8 +101,6 @@ echo "Export these into your shell"
 echo
 echo "    export CONSUL_HTTP_ADDR=http://localhost:8500"
 echo "    export NOMAD_ADDR=http://localhost:4646"
-echo "    export BINDLE_URL=http://bindle.local.fermyon.link/v1"
-echo "    export HIPPO_URL=http://hippo.local.fermyon.link"
 echo
 echo "Ctrl+C to exit."
 echo
