@@ -1,6 +1,6 @@
 # Local Quick Start
 
-This is an 'Installer Lite' refactore to run Spin apps on Nomad locally.
+This is an 'Installer Lite' refactor to run Spin apps on Nomad locally.
 
 It doesn't run Hippo, the admin/UI dashboard, as it doesn't yet support
 [apps as OCI images](https://github.com/deislabs/hippo/issues/1653), which
@@ -21,7 +21,7 @@ a Nomad job.
 ./start.sh
 ```
 
-# Deploying to Nomad
+# Deploying Spin apps to Nomad
 
 You can use the [Spin Nomad plugin](https://github.com/vdice/spin-nomad-plugin) to deploy.
 
